@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import styles from '../../styles/Home.module.scss'
+import { spled } from '../../ignoreData';
 
 const Home =() => {
   return (
@@ -13,7 +14,7 @@ const Home =() => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://docs.google.com/spreadsheets/d/1Zjd2KH-yX5AYixb9NX3wAuPgjGhGjCWyXTOiipbwAoA/edit#gid=0">Life Nadge</a>
+          Welcome to <a href={spled}>Life Nadge</a>
         </h1>
 
         <p className={styles.description}>
