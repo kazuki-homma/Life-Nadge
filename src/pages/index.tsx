@@ -29,27 +29,37 @@ const Home =() => {
             </a>
           </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <a href="/" className={styles.card}>
             <h3>OneTime Tasks &rarr;</h3>
             <p>一度だけ行うタスクを記述します</p>
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
+            href="/"
             className={styles.card}
           >
-            <h3>Recode &rarr;</h3>
-            <p>今までの成績を確認します</p>
+            <h3>Add Task &rarr;</h3>
+            <p>
+              タスクを追加します
+            </p>
           </a>
 
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="/"
             className={styles.card}
           >
             <h3>Learning &rarr;</h3>
             <p>
               継続しているタスクについて確認します。
             </p>
+          </a>
+
+          <a
+            href="/"
+            className={styles.card}
+          >
+            <h3>Recode &rarr;</h3>
+            <p>今までの成績を確認します</p>
           </a>
         </div>
       </main>
