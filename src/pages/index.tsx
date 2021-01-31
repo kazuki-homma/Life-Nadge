@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import Head from 'next/head'
 import Link from 'next/link'
 
 import styles from '../../styles/Home.module.scss'
 import { spled } from '../../ignoreData';
 
-const Home =() => {
+const Home: FC = () => {
   return (
     <div className={styles.container}>
       <Head>
