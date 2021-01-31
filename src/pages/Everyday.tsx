@@ -5,7 +5,23 @@ import path from 'path';
 
 import styles from '../../styles/Home.module.scss';
 
-const Everyday = () => {
+export async function getStaticProps() {
+    const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
+    const everydayTasks = JSON.parse(fs.readFileSync(pathDirectory, 'utf-8'));
+    return {
+        props: {
+            everydayTasks
+        }
+    }
+}
+
+function tasksView(everydayTasks) {
+   return everydayTasks.map(task => {
+       return <div>{ task.name }</div>
+   })
+}
+
+const Everyday = (props) => {
     return (
         <div className={styles.container}>
           <Head>
@@ -16,18 +32,11 @@ const Everyday = () => {
             <h1 className={styles.title}>
              Everyday Tasks
             </h1>
+              <div>{tasksView(props.everydayTasks)}</div>
               <Link href="/">Topに戻る</Link>
           </main>
         </div>
     );
-}
-
-Everyday.getInitialProps = async() => {
-    const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
-    console.log(pathDirectory);
-    const everydayTasks = fs.readFileSync(pathDirectory, 'utf-8');
-    console.log(everydayTasks);
-    return everydayTasks;
 }
 
 export default Everyday;

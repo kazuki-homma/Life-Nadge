@@ -1,7 +1,6 @@
-{
-    "Everyday Tasks": [
-        {"name": "メールの確認", "point": 1, "time": "all"},
-        {"name": "首マッサージ", "point": 1, "time": "night"},
-        {"name": "寝る前のラジオ", "point": 1, "time": "night"}
-    ]
-}
+
+[
+    {"name": "メールの確認", "point": 1, "time": "all"},
+    {"name": "首マッサージ", "point": 1, "time": "night"},
+    {"name": "寝る前のラジオ", "point": 1, "time": "night"}
+]
