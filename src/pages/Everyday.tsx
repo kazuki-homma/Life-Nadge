@@ -1,12 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link'
+import Link from 'next/link';
+import fs from 'fs';
+import path from 'path';
 
-import styles from '../../styles/Home.module.scss'
-
-export async function getStaticProps() {
-    const everydayTasks = await fetch('../data/everyday.json');
-    console.log(everydayTasks);
-}
+import styles from '../../styles/Home.module.scss';
 
 const Everyday = () => {
     return (
@@ -19,11 +16,18 @@ const Everyday = () => {
             <h1 className={styles.title}>
              Everyday Tasks
             </h1>
-              
               <Link href="/">Topに戻る</Link>
           </main>
         </div>
     );
+}
+
+Everyday.getInitialProps = async() => {
+    const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
+    console.log(pathDirectory);
+    const everydayTasks = fs.readFileSync(pathDirectory, 'utf-8');
+    console.log(everydayTasks);
+    return everydayTasks;
 }
 
 export default Everyday;
