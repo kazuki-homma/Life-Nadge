@@ -3,6 +3,11 @@ import Link from 'next/link'
 
 import styles from '../../styles/Home.module.scss'
 
+export async function getStaticProps() {
+    const everydayTasks = await fetch('../data/everyday.json');
+    console.log(everydayTasks);
+}
+
 const Everyday = () => {
     return (
         <div className={styles.container}>
