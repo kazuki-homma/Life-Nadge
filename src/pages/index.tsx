@@ -1,11 +1,13 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
 import styles from '../../styles/Home.module.scss'
 
 const Home =() => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Life Nadge</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -20,10 +22,12 @@ const Home =() => {
         </p>
 
         <div className={styles.grid}>
-          <a className={styles.card}>
-            <h3>Everyday Tasks &rarr;</h3>
-            <p>毎日行うタスクを記述します</p>
-          </a>
+          <Link href="/Everyday">
+            <a className={styles.card}>
+              <h3>Everyday Tasks &rarr;</h3>
+              <p>毎日行うタスクを記述します</p>
+            </a>
+          </Link>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
             <h3>OneTime Tasks &rarr;</h3>
