@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 import styles from '../../styles/Home.module.scss';
+import { everydayPoint as ep } from '../data/tasks/point';
 
 export async function getStaticProps() {
     const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
@@ -33,6 +34,8 @@ function checkCount(taskId, addEverydayPoint) {
   const div = document.getElementById(taskId);
   div.classList.toggle('checked');
   addEverydayPoint(document.getElementsByClassName('checked').length);
+  ep.point = document.getElementsByClassName('checked').length;
+  console.log(ep);
 }
 
 const Everyday = (props) => {
