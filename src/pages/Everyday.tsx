@@ -16,22 +16,27 @@ export async function getStaticProps() {
     }
 }
 
-function tasksView(everydayTasks, countUp) {
+function tasksView(everydayTasks, addEverydayPoint) {
    return everydayTasks.map(task => {
        return (
-         <div className={styles.card} onClick={countUp} key={task.id}>
+        <label htmlFor={task.id} key={task.id}>
+         <div className={styles.card}>
           { task.name }
+          <input type="checkbox" defaultChecked={false} id={task.id} onChange={() => checkCount(task.id, addEverydayPoint)}/>
          </div>
+        </label>
        );
    })
 }
 
+function checkCount(taskId, addEverydayPoint) {
+  const div = document.getElementById(taskId);
+  div.classList.toggle('checked');
+  addEverydayPoint(document.getElementsByClassName('checked').length);
+}
+
 const Everyday = (props) => {
-    const onSubmit = data => console.log(data);
     const [everydayPoint, addEverydayPoint] = useState(0);
-    const countUp = () => {
-        addEverydayPoint(everydayPoint+1);
-    }
     return (
         <div className={styles.container}>
           <Head>
@@ -43,7 +48,7 @@ const Everyday = (props) => {
             Everyday Tasks
             </h1>
             <h3>現在のeveryday pointは<code className={styles.code}>{everydayPoint}</code></h3>
-            <div className={styles.grid}>{tasksView(props.everydayTasks, countUp)}</div>
+            <div className={styles.grid}>{tasksView(props.everydayTasks, addEverydayPoint)}</div>
             <Link href="/">Topに戻る</Link>
           </main>
         </div>
