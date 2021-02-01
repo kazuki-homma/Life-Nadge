@@ -37,7 +37,7 @@ const Home: FC = () => {
           </a>
 
           <a
-            href="/"
+            href="/AddTask"
             className={styles.card}
           >
             <h3>Add Task &rarr;</h3>

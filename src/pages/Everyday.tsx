@@ -19,7 +19,7 @@ export async function getStaticProps() {
 function tasksView(everydayTasks, countUp) {
    return everydayTasks.map(task => {
        return (
-         <div className={styles.card} onClick={countUp}>
+         <div className={styles.card} onClick={countUp} key={task.id}>
           { task.name }
          </div>
        );
@@ -27,6 +27,7 @@ function tasksView(everydayTasks, countUp) {
 }
 
 const Everyday = (props) => {
+    const onSubmit = data => console.log(data);
     const [everydayPoint, addEverydayPoint] = useState(0);
     const countUp = () => {
         addEverydayPoint(everydayPoint+1);
@@ -39,7 +40,7 @@ const Everyday = (props) => {
           </Head>
           <main className={styles.main}>
             <h1 className={styles.title}>
-             Everyday Tasks
+            Everyday Tasks
             </h1>
             <h3>現在のeveryday pointは<code className={styles.code}>{everydayPoint}</code></h3>
             <div className={styles.grid}>{tasksView(props.everydayTasks, countUp)}</div>
