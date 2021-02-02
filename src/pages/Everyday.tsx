@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import fs from 'fs';
@@ -6,14 +5,14 @@ import path from 'path';
 
 import styles from '../../styles/Home.module.scss';
 
-export async function getStaticProps() {
-    const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
-    const everydayTasks = JSON.parse(fs.readFileSync(pathDirectory, 'utf-8'));
-    return {
-        props: {
-            everydayTasks
-        }
+export async function getServerSideProps() {
+  const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
+  const everydayTasks = JSON.parse(fs.readFileSync(pathDirectory, 'utf-8'));
+  return {
+    props: {
+      everydayTasks
     }
+  }
 }
 
 function tasksView(everydayTasks, addEverydayPoint) {
@@ -22,7 +21,7 @@ function tasksView(everydayTasks, addEverydayPoint) {
         <label htmlFor={task.id} key={task.id}>
          <div className={styles.card}>
           { task.name }
-          <input type="checkbox" defaultChecked={false} id={task.id} onChange={() => checkCount(task.id, addEverydayPoint)}/>
+          <input type="checkbox" defaultChecked={task.done} id={task.id} onChange={() => checkCount(task.id, addEverydayPoint)}/>
          </div>
         </label>
        );
@@ -36,23 +35,23 @@ function checkCount(taskId, addEverydayPoint) {
 }
 
 const Everyday = (props) => {
-    const [everydayPoint, addEverydayPoint] = useState(0);
-    return (
-        <div className={styles.container}>
-          <Head>
-            <title>Life Nadge</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <main className={styles.main}>
-            <h1 className={styles.title}>
-            Everyday Tasks
-            </h1>
-            <h3>現在のeveryday pointは<code className={styles.code}>{everydayPoint}</code></h3>
-            <div className={styles.grid}>{tasksView(props.everydayTasks, addEverydayPoint)}</div>
-            <Link href="/">Topに戻る</Link>
-          </main>
-        </div>
-    );
+
+  return (
+      <div className={styles.container}>
+        <Head>
+          <title>Life Nadge</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className={styles.main}>
+          <h1 className={styles.title}>
+          Everyday Tasks
+          </h1>
+          <h3>現在のeveryday pointは<code className={styles.code}>{props.everydayPoint}</code></h3>
+          <div className={styles.grid}>{tasksView(props.everydayTasks, props.addEverydayPoint)}</div>
+          <Link href="/">Topに戻る</Link>
+        </main>
+      </div>
+  );
 }
 
 export default Everyday;
