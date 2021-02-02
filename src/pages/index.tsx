@@ -20,7 +20,7 @@ const Home: FC = () => {
 
         <p className={styles.description}>
           現在のレベル{' '}
-          <code className={styles.code}>LV.48</code>
+          <code className={styles.code}>LV.49</code>
         </p>
 
         <div className={styles.grid}>
