@@ -1,13 +1,20 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 
 import styles from '../../styles/Home.module.scss';
 
 export async function getServerSideProps() {
-  const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
-  const everydayTasks = JSON.parse(fs.readFileSync(pathDirectory, 'utf-8'));
+  // const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
+  // const data = JSON.parse(fs.readFileSync(pathDirectory, 'utf-8'));
+  const everydayTasks = await fetch('http://localhost:8080/api/v1/everydayTasks').then(res => {
+    if(res.ok){
+        return res.json();
+    } else {
+        throw new Error();
+    }
+  })
   return {
     props: {
       everydayTasks
