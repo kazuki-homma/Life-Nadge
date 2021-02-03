@@ -1,9 +1,16 @@
+import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 // import fs from 'fs';
 // import path from 'path';
 
 import styles from '../../styles/Home.module.scss';
+
+const axiosBase = axios.create({
+  headers: {
+    "Access-Control-Allow-Origin": "*"
+  }
+});
 
 export async function getServerSideProps() {
   // const pathDirectory = path.join(process.cwd(), 'src', 'data', 'tasks', 'everyday.json');
@@ -35,9 +42,31 @@ function tasksView(everydayTasks, addEverydayPoint) {
    })
 }
 
-function checkCount(taskId, addEverydayPoint) {
+async function checkCount(taskId, addEverydayPoint) {
   const div = document.getElementById(taskId);
+  const doneUrl = `http://localhost:8080/api/v1/everydayTasks/${taskId}`;
   div.classList.toggle('checked');
+  if (div.classList.contains('checked')) {
+    await axiosBase.put(doneUrl, { done: 1 }).then(res => {
+      // レスポンスが200の時の処理
+      console.log("更新したよ")
+    })
+    .catch(err => {
+      if(err.response) {
+        // レスポンスが200以外の時の処理
+      }
+    });
+  } else {
+    await axiosBase.put(doneUrl, { done: 0 }).then(res => {
+      // レスポンスが200の時の処理
+      console.log("更新したよ")
+    })
+    .catch(err => {
+      if(err.response) {
+        // レスポンスが200以外の時の処理
+      }
+    });
+  }
   addEverydayPoint(document.getElementsByClassName('checked').length);
 }
 
