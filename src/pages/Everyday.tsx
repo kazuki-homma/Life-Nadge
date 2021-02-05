@@ -8,7 +8,7 @@ import styles from '../../styles/Home.module.scss';
 
 const axiosBase = axios.create({
   headers: {
-    "Access-Control-Allow-Origin": "*"
+    "Access-Control-Allow-Origin": "*",
   }
 });
 
@@ -47,7 +47,7 @@ async function checkCount(taskId, addEverydayPoint) {
   const doneUrl = `http://localhost:8080/api/v1/everydayTasks/${taskId}`;
   div.classList.toggle('checked');
   if (div.classList.contains('checked')) {
-    await axiosBase.put(doneUrl, { done: 1 }).then(res => {
+    await axiosBase.put(doneUrl, { id: taskId, done: 1 }).then(res => {
       // レスポンスが200の時の処理
       console.log("更新したよ")
     })
@@ -57,7 +57,7 @@ async function checkCount(taskId, addEverydayPoint) {
       }
     });
   } else {
-    await axiosBase.put(doneUrl, { done: 0 }).then(res => {
+    await axiosBase.put(doneUrl, { id: taskId, done: 0 }).then(res => {
       // レスポンスが200の時の処理
       console.log("更新したよ")
     })
