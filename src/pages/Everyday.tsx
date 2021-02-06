@@ -44,7 +44,7 @@ function tasksView(everydayTasks, addEverydayPoint) {
 
 async function checkCount(taskId, addEverydayPoint) {
   const div = document.getElementById(taskId);
-  const doneUrl = `http://localhost:8080/api/v1/everydayTasks/${taskId}`;
+  const doneUrl = `http://localhost:8080/api/v1/everydayTasks`;
   div.classList.toggle('checked');
   if (div.classList.contains('checked')) {
     await axiosBase.put(doneUrl, { id: taskId, done: 1 }).then(res => {
@@ -91,3 +91,5 @@ const Everyday = (props) => {
 }
 
 export default Everyday;
+
+// cors , http , node study
