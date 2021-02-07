@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import styles from '../../styles/Home.module.scss'
-
+// add task compo
 const AddTask = () => {
     return (
       <div className={styles.container}>
