@@ -44,12 +44,12 @@ function tasksView(everydayTasks, addEverydayPoint) {
 
 async function checkCount(taskId, addEverydayPoint) {
   const div = document.getElementById(taskId);
-  const doneUrl = `http://localhost:8080/api/v1/everydayTasks`;
+  const doneUrl = `http://localhost:8080/api/v1/everydayTasks/`;
   div.classList.toggle('checked');
   if (div.classList.contains('checked')) {
-    await axiosBase.put(doneUrl, { id: taskId, done: 1 }).then(res => {
+    await axiosBase.put(doneUrl + taskId, { id: taskId, done: 1 }).then(res => {
       // レスポンスが200の時の処理
-      console.log("更新したよ")
+      console.log("更新したよ");
     })
     .catch(err => {
       if(err.response) {
