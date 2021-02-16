@@ -49,7 +49,7 @@ async function checkCount(taskId, addEverydayPoint) {
   if (div.classList.contains('checked')) {
     await axiosBase.put(doneUrl + taskId, { id: taskId, done: 1 }).then(res => {
       // レスポンスが200の時の処理
-      console.log("更新したよ");
+      console.log("更新したよ")
     })
     .catch(err => {
       if(err.response) {
