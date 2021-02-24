@@ -83,7 +83,6 @@ app.post('/api/v1/everydayTasks', function(req, res) {;
 
 // Update everydayTask data
 app.put('/api/v1/everydayTasks/:id', async (req, res) => {
-    res.send('ここまでは通ったで');
     //Connect database
     const db = new sqlite3.Database(dbPath)
     const id = req.body.id;
