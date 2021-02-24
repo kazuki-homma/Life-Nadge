@@ -83,29 +83,27 @@ app.post('/api/v1/everydayTasks', function(req, res) {;
 
 // Update everydayTask data
 app.put('/api/v1/everydayTasks/:id', async (req, res) => {
-    console.log(req.body);
-    console.log(req.body.done);
     res.send('ここまでは通ったで');
     //Connect database
     const db = new sqlite3.Database(dbPath)
     const id = req.body.id;
 
-    // // 現在のタスク情報を取得する
-    // db.get(`SELECT * FROM everydayTasks WHERE id = ${id}`, async (error,row) => {
-    //     const name = req.body.name ? req.body.name : row.name;
-    //     const profile = req.body.profile ? req.body.profile : row.profile;
-    //     const point = req.body.point ? req.body.point : row.point;
-    //     const time = req.body.time ? req.body.time : row.time;
-    //     const done = req.body.done ? req.body.done : row.done;
+    // 現在のタスク情報を取得する
+    db.get(`SELECT * FROM everydayTasks WHERE id = ${id}`, async (error,row) => {
+        const name = req.body.name ? req.body.name : row.name;
+        const profile = req.body.profile ? req.body.profile : row.profile;
+        const point = req.body.point ? req.body.point : row.point;
+        const time = req.body.time ? req.body.time : row.time;
+        const done = req.body.done ? req.body.done : row.done;
 
-    //     await run(
-    //         `UPDATE everydayTasks SET name="${name}", profile="${profile}", point="${point}", time="${time}", done="${done}" WHERE id=${id}`,
-    //         db,
-    //         res,
-    //         "done!"
-    //     )
-    // })
-    // db.close()
+        await run(
+            `UPDATE everydayTasks SET name="${name}", profile="${profile}", point="${point}", time="${time}", done="${done}" WHERE id=${id}`,
+            db,
+            res,
+            "done!"
+        )
+    })
+    db.close()
 });
 
 // DELETE everydayTask data
