@@ -48,7 +48,6 @@ async function checkCount(taskId, addEverydayPoint) {
   div.classList.toggle('checked');
   if (div.classList.contains('checked')) {
     await axiosBase.put(doneUrl + taskId, { id: taskId, done: 1 }).then(res => {
-      
       console.log("更新したよ")
     })
     .catch(err => {
